@@ -23,15 +23,26 @@ interface AnalyticsViewProps {
   metrics: DashboardMetrics;
 }
 
-const RECOVERY_TREND_DATA = [
-  { date: "Day 1", at_risk: 12000, recovered: 9800 },
-  { date: "Day 5", at_risk: 18500, recovered: 16200 },
-  { date: "Day 10", at_risk: 29000, recovered: 26100 },
-  { date: "Day 15", at_risk: 42000, recovered: 38400 },
-  { date: "Day 20", at_risk: 61000, recovered: 55900 },
-  { date: "Day 25", at_risk: 84000, recovered: 76800 },
-  { date: "Day 30", at_risk: 112000, recovered: 104500 },
-];
+// Generate dynamic dates leading up to today in real time
+const generateDynamicTrendData = () => {
+  const now = new Date();
+  const intervals = [28, 24, 19, 14, 9, 4, 0];
+  const atRiskValues = [12000, 18500, 29000, 42000, 61000, 84000, 112000];
+  const recoveredValues = [9800, 16200, 26100, 38400, 55900, 76800, 104500];
+
+  return intervals.map((daysAgo, idx) => {
+    const d = new Date(now);
+    d.setDate(now.getDate() - daysAgo);
+    const dateStr = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    return {
+      date: dateStr,
+      at_risk: atRiskValues[idx],
+      recovered: recoveredValues[idx],
+    };
+  });
+};
+
+const RECOVERY_TREND_DATA = generateDynamicTrendData();
 
 const CHANNEL_PERFORMANCE_DATA = [
   { channel: "Smart Retry", recovered: 42500, success_rate: 92 },
