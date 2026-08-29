@@ -1,6 +1,6 @@
 # Dockerfile for Revenue Recovery AI Backend
 
-FROM python:3.11-slim as builder
+FROM python:3.14-slim as builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 
 # Final stage
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
