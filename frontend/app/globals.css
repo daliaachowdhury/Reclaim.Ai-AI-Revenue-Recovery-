@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -30,67 +30,187 @@ body {
   overflow-x: hidden;
 }
 
-/* Glassmorphism & Neon Glow Tokens */
+/* ============================================================================
+   TRENDING LUXURY FINTECH GLASS & AURORA EFFECTS
+   ============================================================================ */
+
 .glass-panel {
   background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card-hover {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+.glass-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.25);
 }
 
-.glass-card-hover:hover {
-  transform: translateY(-2px);
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);
+/* Shimmer Border Beam Effect (Magic UI Inspired) */
+@keyframes border-beam {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
 }
 
+.border-beam {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid transparent;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+.border-beam::after {
+  content: "";
+  position: absolute;
+  aspect-ratio: 1;
+  width: 200px;
+  background: radial-gradient(circle, #10b981 0%, #6366f1 50%, transparent 80%);
+  offset-path: rect(0 auto auto 0 round 16px);
+  animation: border-beam 8s infinite linear;
+}
+
+/* Aurora Gradient Animated Background */
+@keyframes aurora {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.aurora-bg {
+  background: linear-gradient(-45deg, #030712, #0f172a, #1e1b4b, #064e3b, #030712);
+  background-size: 400% 400%;
+  animation: aurora 16s ease infinite;
+}
+
+/* Radiant Neon Glows */
 .glow-emerald {
-  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.4);
 }
 
 .glow-indigo {
-  box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 0 35px -5px rgba(99, 102, 241, 0.4);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.4);
 }
 
-.glow-rose {
-  box-shadow: 0 0 25px -5px rgba(244, 63, 94, 0.35);
+.glow-purple {
+  box-shadow: 0 0 35px -5px rgba(168, 85, 247, 0.4);
+}
+
+/* Gradient Texts with Shimmer */
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .gradient-text-emerald {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
+  background: linear-gradient(90deg, #34d399 0%, #10b981 25%, #6ee7b7 50%, #10b981 75%, #059669 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: text-shimmer 6s linear infinite;
 }
 
 .gradient-text-indigo {
-  background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 50%, #6366f1 100%);
+  background: linear-gradient(90deg, #a5b4fc 0%, #818cf8 25%, #c7d2fe 50%, #6366f1 75%, #4f46e5 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: text-shimmer 6s linear infinite;
 }
 
-.gradient-text-amber {
-  background: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Radar Pulse for Live Status */
+@keyframes radar-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
 }
 
-/* Custom Scrollbar */
+.radar-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: #10b981;
+  animation: radar-ripple 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* Dynamic Sound Equalizer Waveform */
+@keyframes eqBounce {
+  0%, 100% {
+    height: 15%;
+  }
+  25% {
+    height: 90%;
+  }
+  50% {
+    height: 35%;
+  }
+  75% {
+    height: 100%;
+  }
+}
+
+.eq-bar {
+  animation: eqBounce 1.1s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+/* Traveling Flow Energy Pulse (LangGraph Connector) */
+@keyframes flowPulse {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.flow-pulse {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #10b981, #6366f1, transparent);
+  animation: flowPulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -107,34 +227,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #374151;
-}
-
-/* Animations */
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.04);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 2.5s infinite ease-in-out;
-}
-
-@keyframes waveBar {
-  0%, 100% {
-    transform: scaleY(0.3);
-  }
-  50% {
-    transform: scaleY(1);
-  }
-}
-
-.wave-bar {
-  animation: waveBar 1.2s infinite ease-in-out;
-  transform-origin: bottom;
 }
