@@ -1,0 +1,38 @@
+version: 2
+updates:
+  # Maintain dependencies for npm (Frontend: Next.js, React, Framer Motion, Tailwind)
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "frontend"
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore(deps-frontend)"
+      include: "scope"
+
+  # Maintain dependencies for pip (Backend: LangGraph, FastAPI, Pydantic, Motor)
+  - package-ecosystem: "pip"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "backend"
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore(deps-backend)"
+      include: "scope"
+
+  # Maintain Dockerfile base images
+  - package-ecosystem: "docker"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "docker"
+      - "automated"
