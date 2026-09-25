@@ -6,8 +6,6 @@ import json
 import os
 from typing import Optional, Any, List, Dict
 from datetime import datetime, timedelta
-from langchain_anthropic import ChatAnthropic
-from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from app.core.state import (
@@ -118,9 +116,17 @@ def get_llm():
     openai_key = os.getenv("OPENAI_API_KEY", "").strip()
     
     if anthropic_key and not anthropic_key.endswith("YOUR_KEY_HERE"):
-        return ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
+        try:
+            from langchain_anthropic import ChatAnthropic
+            return ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
+        except Exception:
+            return FallbackLLM()
     elif openai_key and not openai_key.endswith("YOUR_KEY_HERE"):
-        return ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        try:
+            from langchain_openai import ChatOpenAI
+            return ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        except Exception:
+            return FallbackLLM()
     else:
         return FallbackLLM()
 
