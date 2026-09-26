@@ -9,4 +9,4 @@ langgraph>=0.0.26
 langchain-core>=0.1.27
 langchain-anthropic>=0.1.4
 langchain-openai>=0.0.8
-requests>=2.31.0
+requests>=2.34.2
