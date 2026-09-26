@@ -8,5 +8,5 @@ python-dotenv>=1.0.0
 langgraph>=0.0.26
 langchain-core>=0.1.27
 langchain-anthropic>=0.1.4
-langchain-openai>=0.0.8
+langchain-openai>=1.6.5
 requests>=2.31.0
